@@ -8,8 +8,7 @@ import { revalidatePath } from "next/cache"
 import Order from "../database/models/order.model"
 import Event from "../database/models/event.model"
 
-export const createUser = async (user: CreateUserParams) => {
-  
+export async function createUser(user: CreateUserParams) {
   try {
     await connectToDatabase();
   
@@ -22,8 +21,7 @@ export const createUser = async (user: CreateUserParams) => {
   }
 }
 
-export const updateUser = async (clerkId: string, user: UpdateUserParams) => {
-  
+export async function updateUser(clerkId: string, user: UpdateUserParams) {
   try {
     await connectToDatabase();
   
@@ -40,27 +38,26 @@ export const updateUser = async (clerkId: string, user: UpdateUserParams) => {
   }
 }
 
-export const deleteUser = async (clerkId: string) => {
-  
+export async function deleteUser(clerkId: string) {
   try {
     await connectToDatabase();
   
-    const userToDelete = await User.findOne({clerkId})
+    const userToDelete = await User.findOne({ clerkId })
 
     if(!userToDelete){
       throw new Error('User not found')
     }
 
     //unlink all relationships
-
     await Promise.all([
       //update the events collection to remove the references to the user
       Event.updateMany(
         { _id: {$in: userToDelete.events} },
         { $pull: {organizer: userToDelete._id} },
       ),
+
       Order.updateMany(
-        { _id: { $in: userToDelete.order} }, 
+        { _id: { $in: userToDelete.orders} }, 
         {$unset: {buyer: 1}},
       )
     ])
@@ -76,8 +73,7 @@ export const deleteUser = async (clerkId: string) => {
   }
 }
 
-export const getUserById = async (userId: string) => {
-  
+export async function getUserById(userId: string) {
   try {
     await connectToDatabase();
   
