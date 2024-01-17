@@ -4,6 +4,10 @@ import { Button } from '../ui/button'
 import { loadStripe } from '@stripe/stripe-js';
 import { checkOutOrder } from '@/lib/actions/order.actions';
 
+loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
+
 const Checkout = ({event, userId}: {event: IEvent, userId: string}) => {
   // Make sure to call `loadStripe` outside of a component’s render to avoid
   // recreating the `Stripe` object on every render.
@@ -20,12 +24,9 @@ const Checkout = ({event, userId}: {event: IEvent, userId: string}) => {
     }
   }, []);
 
-  loadStripe(
-    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-  );
 
    const onCheckout = async () => {
-    console.log("CHECKOUT")
+    //console.log("CHECKOUT")
     const order = {
       eventTitle: event.title,
       eventId: event._id,
