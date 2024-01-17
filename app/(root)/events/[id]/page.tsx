@@ -1,4 +1,5 @@
-import { CheckoutButton } from '@/components/shared/CheckoutButton'
+// import { CheckoutButton } from '@/components/shared/CheckoutButton'
+import CheckoutButton from '@/components/shared/CheckoutButton'
 import Collections from '@/components/shared/Collections'
 import { getAllEvents, getEventById, getRelatedEventsByCategory } from '@/lib/actions/event.actions'
 import { formatDateTime } from '@/lib/utils'
@@ -20,9 +21,8 @@ const EventDetails = async ({params: { id }, searchParams}: SearchParamProps) =>
   })
   
 
-  console.log(relatedEvents, "from the event Details")
+  console.log(event, "from the event Details")
 
-  //console.log(event)
   return (
     <>
     <section className='flex justify-center bg-primary-50 bg-dotted-pattern bg-contain'>
@@ -56,7 +56,7 @@ const EventDetails = async ({params: { id }, searchParams}: SearchParamProps) =>
           </div>
 
           {/*ticket button goes here*/}
-          <CheckoutButton event={event} />
+          <CheckoutButton event={event}/>
 
           <div className='flex flex-col gap-5'>
             <div className='flex gap-2 md:gap-3'>
