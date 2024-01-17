@@ -2,11 +2,9 @@ import { IEvent } from '@/lib/database/models/event.model'
 import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
 import { loadStripe } from '@stripe/stripe-js';
-import { checkOutOrder } from '@/lib/actions/order.actions';
+import { checkoutOrder } from '@/lib/actions/order.actions';
 
-loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-);
+loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const Checkout = ({event, userId}: {event: IEvent, userId: string}) => {
   // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -34,7 +32,7 @@ const Checkout = ({event, userId}: {event: IEvent, userId: string}) => {
       isFree: event.isFree,
       buyerId: userId
     }
-    await checkOutOrder(order);
+    await checkoutOrder(order);
    }
 
   return (
