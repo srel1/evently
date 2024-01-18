@@ -20,7 +20,6 @@ const Card = ({ event, hasOrderLink, hidePrice}: CardProps) => {
 
   const isEventCreator = userId === event.organizer._id.toString();
 
-  console.log(isEventCreator)
 
   return (
     <div className='group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden 

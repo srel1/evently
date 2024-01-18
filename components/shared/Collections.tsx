@@ -1,6 +1,7 @@
 import { IEvent } from '@/lib/database/models/event.model';
 import React from 'react'
 import Card from './Card';
+import Pagination from './Pagination';
 
 type CollectionProps = {
   data: IEvent[],
@@ -23,7 +24,7 @@ const Collections = ({
   totalPages = 0,
   urlParamName
 }: CollectionProps) => {
-  console.log(data.length)
+  //console.log(data.length)
   return (
     <>
       {data.length > 0 ? (
@@ -39,6 +40,7 @@ const Collections = ({
                 )
               })}
           </ul>
+          {totalPages > 1 && (<Pagination urlParamName={urlParamName} page={page} totalPages={totalPages}/>)}
         </div>
       ) : (
         <div className='flex items-center justify-center wrapper min-h-[200px] flex-col gap-3 w-full

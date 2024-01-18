@@ -53,7 +53,7 @@ const EventForm = ({userId, type, event, eventId}: EventFormProps) => {
 
   const { startUpload } = useUploadThing('imageUploader')
 
-  console.log(userId, "from the event form itself")
+  //console.log(userId, "from the event form itself")
 
 // 1. Define your form.
 const form = useForm<z.infer<typeof eventFormSchema>>({

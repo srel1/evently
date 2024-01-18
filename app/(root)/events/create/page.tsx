@@ -7,7 +7,7 @@ const CreateEvent = () => {
 
   const userId = sessionClaims?.userId as string;
 
-  console.log(userId, "form create event")
+  //console.log(sessionClaims, "form create event")
 
   return (
     <>
